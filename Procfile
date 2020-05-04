@@ -1,1 +1,1 @@
-web: gunicorn marwanapp.wsgi --log-file-
+web: gunicorn marwanapp.wsgi --log-file -
