@@ -1,0 +1,77 @@
+{%extends 'base.html'%}
+
+{% block content %}
+<head>
+ 
+<body>
+
+
+{% if messages %}
+	{% for message in messages %}
+		<div class="alert alert-success alert-dismissible fade show">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+	                <strong>Success! </strong>{{ message }}
+  		</div>
+	{% endfor%}
+
+{% endif %}
+
+<div class="row">
+{% if day1 %}
+
+<div class="column">
+        <h3>اليوم</h3>
+		{% for order in day1 %}
+			<section>
+                   
+					 {%if not order.booked and order.time > now_hour%} {% comment %} and order.time > now_hour{% endcomment %}
+					<form name="book"
+					   action = "{% url 'book' order.id %}" 
+                       method = "POST">
+					   {% csrf_token %}
+                	<button type="submit">{{order.time}}</button>
+                    </form>
+					
+					{%else%} 					
+					<form name="book" action = "{% url 'book' order.id %}" method = "POST">
+					   {% csrf_token %}
+                	<button disabled >{{order.time}}</button>
+                    </form>
+					{% endif %}
+					
+				</section>
+			
+		{% endfor %}
+{% endif %}
+</div>
+
+{% if day2 %}
+<div class="column">
+
+<h3>غدا</h3>
+{% for order in day2 %}
+			<section>
+                    
+					{%if not order.booked%}
+					<form name="book"
+					   action = "{% url 'book' order.id %}" 
+                       method = "POST">
+					   {% csrf_token %}
+                	<button type="submit">{{order.time}}</button>
+                    </form>
+					
+					{%else%} 					
+					<form name="book" action = "{% url 'book' order.id %}" method = "POST">
+					   {% csrf_token %}
+                	<button disabled >{{order.time}}</button>
+                    </form>
+					{% endif %}
+					
+				</section>
+			
+		{% endfor %}
+{% endif %}
+</div>
+
+</body>
+{% endblock content %}

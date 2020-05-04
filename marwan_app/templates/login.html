@@ -1,0 +1,57 @@
+{%extends 'base.html'%}
+
+{% block content %}
+
+{% if messages %}
+	{% for message in messages %}
+		<div class="alert alert-danger alert-dismissible fade show">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+	                <strong>{{ message }}</strong>
+                   
+  		</div>
+	{% endfor%}
+{% endif %}
+
+<html>
+   <body>
+      <form name = "form" 
+         action = "{% url 'login' %}" 
+         method = "POST" > {%csrf_token%}
+         {% csrf_token %}
+         
+         <div style = "max-width:470px;">
+            <center>
+               <label for="phone_number"><b>מספר טלפון</b></label> 
+               <input type = "text" style = "margin-left:5%;" 
+                  placeholder = "תכניס מספר טלפון" name = "phone_number" />
+            </center>
+         </div>
+			
+         <br>
+         <div style = "max-width:470px;">
+            <center>
+               <label for="psw"><b>סיסמה</b></label>
+               <input type = "password" style = "margin-left:5%;" 
+                  placeholder = "תכניס  סיסמה" name = "password" />
+            </center>
+         </div>		
+         <br>
+         <div style = "max-width:470px;">
+            <center> 
+
+               <button style = "border:0px; background-color:#4285F4; margin-top:8%;
+                  height:35px; width:80%;margin-left:19%;" type = "submit" 
+                  value = "login" >
+                  <strong>כניסה</strong>
+               </button> 
+
+         <a class="navbar-brand" href="{% url 'signup' %}">הרשמה</a>
+               
+            </center>
+         </div>
+      </form>
+      <hr/>
+   </body>
+</html>
+
+{% endblock content %}

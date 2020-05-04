@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+
+{% block content %}
+<html>
+   <h1 class="pagetitle">الادارة</h1><hr>
+   <body>
+	    <table class="table table-bordered">
+				<tr><center><a class="nav-link" href="{% url 'today_orders'%}">أدوار اليوم</a></center></tr>
+            <tr><center><a class="nav-link" href="{% url 'tomorrow_orders'%}">ادوار الغد</a></center></tr>
+	   </table>
+
+
+
+
+
+
+
+
+
+
+   </body>
+   
+</html>
+
+{% endblock content %}

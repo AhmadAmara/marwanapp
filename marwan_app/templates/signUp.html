@@ -1,0 +1,51 @@
+{%extends 'base.html'%}
+
+{% block content %}
+
+{% if messages %}
+	{% for message in messages %}
+		<div class="alert alert-danger alert-dismissible fade show">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+	                <strong>{{ message }}</strong>
+                   
+  		</div>
+	{% endfor%}
+{% endif %}
+
+<form name = "form" 
+   action="{% url 'signup' %}"  
+    method = "POST" > {%csrf_token%}
+  <div class="container">
+    <h1>הרשמה</h1>
+    <p>בבקשה נא למלא את הפרטים שלך</p>
+    <p>شروط التسجيل</p>
+
+    <hr>
+    <br>
+    <label for="phone_number"><b>מספר טלפון</b></label>
+    <input type="phone_number" placeholder="הכנס מספר טלפון" name="phone_number" required>
+    <br>
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="הכנס סיסמה" name="password" required>
+    <br>
+    <br>
+    <label for="first_name"><b>שם פרטי</b></label>
+    <input type="first_name" placeholder="הכנס שם פרטי" name="first_name" required>
+    <br>
+    <br>
+    <label for="last_name"><b>שם פרטי</b></label>
+    <input type="last_name" placeholder="הכנס שם משפחה" name="last_name" required>
+    <br>
+    <br>
+
+      
+    <div class="clearfix">
+      <button type="button" class="cancelbtn">Cancel</button>
+      <button type="submit" class="signupbtn">Sign Up</button>
+    </div>
+  </div>
+</form>
+
+
+
+{% endblock content %}

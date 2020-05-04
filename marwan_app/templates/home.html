@@ -1,0 +1,56 @@
+{%extends 'base.html'%}
+{% block content %}
+
+{% if messages %}
+	{% for message in messages %}
+		<div class="alert alert-success alert-dismissible fade show">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+	                {{ message }}
+  		</div>
+	{% endfor%}
+
+{% endif %}
+
+<!DOCTYPE html>
+<html dir="rtl" lang="ar" >
+<head>
+<meta charset="utf-8">
+
+<td ><center><h1>أهلا وسهلا بصالون مروان</h1></center></td>
+{%if not active_order%}
+    <td><form name="order"
+        action = "{% url 'order' %}" 
+        method = "POST">
+        {% csrf_token %}
+    <td ><center><input type="submit" value="إحجز دور" ></center></td>
+    </form></td>
+{%else%}
+    <p></p>
+    <td ><center><h3>تفاصيل الدور المحجوز</h3></center></td>
+    <table class="table table-bordered">
+	<tr style="background:#4285F4;color:#eee;">
+       <th>التاريخ</th>
+	    <th>الساعة</th>
+       <th>رقم الهاتف</th>
+        </tr>
+        <td ><center>{{active_order.order.dt}}
+        {%if active_order.order.day_index == 0%}
+            <p> اليوم</p>
+        {%else%}
+             <p> غدا</p>
+        {%endif%}
+        </center></td>
+        <td ><center>{{active_order.order.time}}</center></td>
+        <td ><center>{{active_order.user.phone_number}}</center></td>
+
+    	</table>
+
+    <td><form name="cancel_order"
+        action = "{% url 'cancel_booked' active_order.id %}" 
+        method = "POST">
+        {% csrf_token %}
+    <input type="submit" value="إلغي الدور">
+    </form></td>
+{% endif %}
+
+{% endblock content %}

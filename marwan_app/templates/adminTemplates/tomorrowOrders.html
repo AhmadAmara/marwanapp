@@ -1,0 +1,75 @@
+{%extends 'base.html'%}
+
+{% block content %}
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+
+{% if tomorrow_active_orders %}
+<style>
+td {
+	width:25%;
+	text-align: center;
+}
+</style>
+<h1 class="pagetitle">ادوار اليوم </h1>
+
+{% if messages %}
+	{% for message in messages %}
+		<div class="alert alert-success alert-dismissible fade show">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+	                <strong>Success! </strong>{{ message }}
+  		</div>
+	{% endfor%}
+{% endif %}
+
+
+	<table class="table table-bordered">
+	<tr style="background:#4285F4;color:#eee;">
+       <th>الإسم</th>
+	    <th>الساعة </th>
+       <th>رقم الهاتف</th>
+
+    </tr>
+		{% for active_order in tomorrow_active_orders %}
+
+					<td ><center>{{active_order.user.first_name}} {{active_order.user.last_name}}</center></td>
+					<td ><center>{{active_order.order.time}}</center></td>
+					<td ><center>{{active_order.user.phone_number}}</center></td>
+
+					{% comment %} <td><form name="editform"
+					   action = "{% url 'adminEditUser' user.email %}"  >
+					   {% csrf_token %}
+                	   <input type="submit" value="Edit" >
+					   </form></td> {% endcomment %}
+
+					<!--<input type="submit" value="Buy"/><a href="">{{things.id }}</a></td>-->
+					
+				</tr>
+			
+		{% endfor %}
+	</table>
+	
+{% endif %}
+{% endblock content %}
+
+<!--
+
+	                    </form></td>
+						<td><form name="deleteform"
+					   action = "{% url 'adminDeletcat' things.id %}" 
+                       method = "POST">
+					   {% csrf_token %}
+                	<input type="submit" value="Delete" >
+                    </form></td>
+
+
+-->
