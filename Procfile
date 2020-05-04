@@ -1,1 +1,1 @@
-web: gunicorn marwanapp.wsgi --log-file -
+web: bundle exec thin start -p $PORT
