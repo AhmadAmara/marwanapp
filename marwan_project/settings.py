@@ -84,8 +84,8 @@ WSGI_APPLICATION = 'marwan_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'marwan_db',
+        'ENGINE': 'MONGODB_URI ',
+        'NAME': 'heroku_sfh17xgp',
     }
 }
 
@@ -154,3 +154,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 import dj_database_url 
 prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
+
+MONGODB_URI
