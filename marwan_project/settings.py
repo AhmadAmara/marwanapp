@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '4a2y@96r=6jxx@que6v=1^6qll1mn5ssulnas-#yy8jm&umo)#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['marwanapp.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -82,12 +82,24 @@ WSGI_APPLICATION = 'marwan_project.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'MONGODB_URI ',
+#         'NAME': 'heroku_sfh17xgp',
+#     }
+# }
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'MONGODB_URI ',
-        'NAME': 'heroku_sfh17xgp',
+        'default': {
+        'ENGINE': 'djongo',
+        'NAME': 'ybdjangodb1',
+        'HOST': 'mongodb+srv://ballan_yousef:1212@yousefcluster-f30lw.mongodb.net/test?retryWrites=true&w=majority',
+        'USER': 'ballan_yousef',
+        'PASSWORD': '1212',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -151,7 +163,7 @@ os.path.join(BASE_DIR, 'static'),
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-import dj_database_url 
-prod_db  =  dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(prod_db)
+# import dj_database_url 
+# prod_db  =  dj_database_url.config(conn_max_age=500)
+# DATABASES['default'].update(prod_db)
 
